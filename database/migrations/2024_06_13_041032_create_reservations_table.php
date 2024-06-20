@@ -21,7 +21,7 @@ public function up()
         $table->foreignId('role_id');
         $table->rememberToken();
         $table->timestamp();
-    })
+    });
 }
 
 
