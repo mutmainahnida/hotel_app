@@ -7,21 +7,28 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function edit($id){
+    public function edit($id)
+    {
         $user = User::find($id);
         $data = [
             "user"  => $user 
         ];
-        return view('user.edit',$data);
+        return view('user.edit', $data);
     }
 
-    public function update(Request $request){
+    //bagian update
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
         $request->validate([
-            ??????
-        ])
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+        ]);
 
-        // Edit Usernya
+        $user->update($request->only('name', 'email'));
 
-        // redirect ke halaman index
+        return redirect()->route('user.index');
+    
     }
 }
