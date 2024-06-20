@@ -45,10 +45,12 @@ class User extends Authenticatable
     ];
 
     //mendefinisikan relasi antara user dan role
-    public function role()
+        public function role()
     {
         return $this->belongsTo(Role::class);
     }
-    //mendefinisikan relasi antara user dan role
+
+
+    
 
 }
