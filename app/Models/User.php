@@ -43,4 +43,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    //mendefinisikan relasi antara user dan role
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
 }
