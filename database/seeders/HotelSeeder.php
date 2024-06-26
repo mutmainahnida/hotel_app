@@ -22,6 +22,7 @@ class HotelSeeder extends Seeder
             'image' => 'https://example.com/image1.jpg',
             'address' => 'Address 1',
             'room_types' => json_encode(['Single', 'Double', 'Suite']),
+            'email' => 'example1@hotel.com', 
         ]);
 
         Hotel::create([
@@ -32,8 +33,9 @@ class HotelSeeder extends Seeder
             'image' => 'https://example.com/image2.jpg',
             'address' => 'Address 2',
             'room_types' => json_encode(['Single', 'Double']),
+            'email' => 'example2@hotel.com',
         ]);
 
-    
+       
     }
 }
