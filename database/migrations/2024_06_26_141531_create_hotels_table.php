@@ -15,17 +15,16 @@ class CreateHotelsTable extends Migration
     {
         Schema::create('hotels', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('location');
-            $table->integer('rating')->default(0);
-            $table->decimal('price_per_night', 8, 2);
-            $table->string('image')->nullable();
-            $table->string('address');
-            $table->json('room_types');
+            $table->string('nama');
+            $table->string('lokasi');
+            $table->integer('penilaian')->default(0);
+            $table->string('gambar')->nullable();
+            $table->longText('alamat');
             $table->string('email');
             $table->timestamps();
         });
     }
+    
 
     /**
      * Reverse the migrations.
