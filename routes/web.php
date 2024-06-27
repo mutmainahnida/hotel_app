@@ -15,3 +15,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('user', UserController::class);
 Route::resource('hotels', HotelController::class);
+
+
+Route::get('/hotels/{id}/edit', 'HotelController@edit')->name('hotels.edit');
+Route::put('/hotels/{id}', 'HotelController@update')->name('hotels.update');
+

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hotel;
 use Illuminate\Http\Request;
 
 class HotelController extends Controller
@@ -41,9 +42,7 @@ class HotelController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
+    public function edit(string $id){
     }
 
     /**
@@ -51,7 +50,6 @@ class HotelController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
     }
 
     /**
