@@ -61,6 +61,9 @@ class PenilaianController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $penilaian = Penilaian::findOrFail($id);
+        $penilaian->delete();
+
+        return redirect()->route('penilaians.index')->with('success', 'Penilaian berhasil dihapus.');
     }
 }
