@@ -18,12 +18,15 @@ class CreateHotelsTable extends Migration
             $table->string('name');
             $table->string('location');
             $table->integer('rating')->default(0);
+            $table->decimal('price_per_night', 8, 2);
             $table->string('image')->nullable();
-            $table->longText('address');
+            $table->string('address');
+            $table->json('room_types');
             $table->string('email');
             $table->timestamps();
         });
     }
+    
 
     /**
      * Reverse the migrations.
