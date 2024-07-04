@@ -22,7 +22,7 @@ class HotelController extends Controller
      */
     public function create()
     {
-        //
+        return view('hotels.create');
     }
 
     /**
@@ -30,7 +30,33 @@ class HotelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'lokasi' => 'required|string|max:255',
+            'penilaian' => 'integer|between:0,5',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'alamat' => 'required|string',
+            'email' => 'required|email|max:255',
+        ]);
+
+        if ($request->hasFile('gambar')) {
+            $gambarPath = $request->file('gambar')->store('images', 'public');
+        } else {
+            $gambarPath = null;
+        }
+
+        Hotel::create($request->all());
+        // Hotel::create([
+        //     'nama' => $request->nama,
+        //     'lokasi' => $request->lokasi,
+        //     'penilaian' => $request->penilaian,
+        //     'gambar' => $gambarPath,
+        //     'alamat' => $request->alamat,
+        //     'email' => $request->email,
+        // ]);
+
+        return redirect()->route('hotels.index')->with('success', 'Hotel berhasil dibuat.');
     }
 
     /**

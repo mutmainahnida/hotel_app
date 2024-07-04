@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Hotel extends Model
 {
     protected $fillable = [
-        'nama', 'lokasi', 'penilaian', 'gambar', 'alamat'
+        'nama', 'lokasi', 'penilaian', 'gambar', 'alamat','email'
     ];
 }

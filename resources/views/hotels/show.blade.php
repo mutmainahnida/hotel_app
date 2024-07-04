@@ -9,7 +9,7 @@
     <img src="{{ asset('storage/' . $hotels->gambar) }}" alt="{{ $hotels->nama }}" style="width:300px;"><br>
     <p>Lokasi: {{ $hotels->lokasi }}</p>
     <p>Penilaian: {{ $hotels->penilaian }}</p>
-    <p>Harga per malam: ${{ $hotel->hara_permalam }}</p>
+    <p>Harga per malam: ${{ $hotel->harga_permalam }}</p>
     <p>Alamat: {{ $hotels->alamat }}</p>
     <div id="map" style="height: 400px; width: 600px;"></div>
     <script>
