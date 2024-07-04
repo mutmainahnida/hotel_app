@@ -45,7 +45,10 @@ class PenilaianController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $penilaian = Penilaian::findOrFail($id);
+        // Jika diperlukan, tambahkan logic untuk mengambil data hotel terkait
+        // Contoh: $hotel = $penilaian->hotel;
+        return view('penilaian.edit', compact('penilaian'));
     }
 
     /**
@@ -53,7 +56,16 @@ class PenilaianController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'penilaian' => 'required|integer',
+            'teks_penilaian' => 'required|string',
+        ]);
+
+        $penilaian = Penilaian::findOrFail($id);
+        $penilaian->update($request->all());
+
+        return redirect()->route('penilaian.edit', $penilaian->id)
+                         ->with('success', 'Penilaian berhasil diperbarui.');
     }
 
     /**
