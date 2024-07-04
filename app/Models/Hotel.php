@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Hotel extends Model
 {
     protected $fillable = [
-        'nama', 'lokasi', 'penilaian', 'gambar', 'alamat','email'
+        'name', 'location', 'rating', 'price_per_night', 'image', 'address', 'room_types'
+    ];
+
+    protected $casts = [
+        'room_types' => 'array',
     ];
 }

@@ -15,21 +15,25 @@ class HotelSeeder extends Seeder
     public function run()
     {
         Hotel::create([
-            'nama' => 'Hotel Example 1',
-            'lokasi' => 'Location 1',
-            'penilaian' => 5,
-            'gambar' => 'https://example.com/image1.jpg',
-            'alamat' => 'Address 1',
+            'name' => 'Hotel Example 1',
+            'location' => 'Location 1',
+            'rating' => 5,
+            'price_per_night' => 100.00,
+            'image' => 'https://example.com/image1.jpg',
+            'address' => 'Address 1',
+            'room_types' => json_encode(['Single', 'Double', 'Suite']),
             'email' => 'example1@hotel.com', 
         ]);
 
         Hotel::create([
-            'nama' => 'Hotel Example 2',
-            'lokasi' => 'Location 2',
-            'penilaian' => 5,
-            'gambar' => 'https://example.com/image2.jpg',
-            'alamat' => 'Address 2',
-            'email' => 'example2@hotel.com', 
+            'name' => 'Hotel Example 2',
+            'location' => 'Location 2',
+            'rating' => 4,
+            'price_per_night' => 80.00,
+            'image' => 'https://example.com/image2.jpg',
+            'address' => 'Address 2',
+            'room_types' => json_encode(['Single', 'Double']),
+            'email' => 'example2@hotel.com',
         ]);
 
        
