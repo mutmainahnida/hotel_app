@@ -4,59 +4,93 @@ namespace App\Http\Controllers;
 
 use App\Models\Hotel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class HotelController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $hotels = Hotel::all();
+        return view('hotels.index', compact('hotels'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('hotels.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+         $fileName = microtime() . '.' . $request->image->extension();
+    Storage::putFileAs('/public/hotel/', $request->image, $fileName);
+
+    Hotel::create([
+        "image" => $fileName,
+        "nama" => $request->nama,
+        "lokasi" => $request->lokasi,
+        "penilaian" => $request->penilaian,
+        "alamat" => $request->alamat,
+        "email" => $request->email
+    ]);
+
+    return redirect()->route('hotels.index')->with('success', 'Hotel berhasil ditambahkan.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $hotel = Hotel::findOrFail($id);
+        return view('hotels.show', compact('hotel'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id){
+    public function edit($id)
+{
+    $hotel = Hotel::findOrFail($id);
+    return view('hotels.edit', compact('hotel'));
+}
+
+public function update(Request $request, $id)
+{
+    $request->validate([
+        'nama' => 'required',
+        'lokasi' => 'required',
+        'alamat' => 'required',
+        'email' => 'required|email',
+    ]);
+
+    $hotel = Hotel::findOrFail($id);
+
+    $hotelData = [
+        'nama' => $request->nama,
+        'lokasi' => $request->lokasi,
+        'penilaian' => $request->penilaian ?? 0,
+        'alamat' => $request->alamat,
+        'email' => $request->email,
+    ];
+
+    if ($request->hasFile('gambar')) {
+        $file = $request->file('gambar');
+        $fileName = time() . '_' . $file->getClientOriginalName();
+        $file->storeAs('public/images', $fileName);
+        $hotelData['gambar'] = $fileName;
+
+        // Hapus gambar lama jika ada
+        if ($hotel->gambar) {
+            Storage::delete('public/images/' . $hotel->gambar);
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    $hotel->update($hotelData);
+
+    return redirect()->route('hotels.index')
+        ->with('success', 'Data hotel berhasil diperbarui.');
+}
+
+    public function destroy($id)
     {
-    }
+        $hotel = Hotel::findOrFail($id);
+        $hotel->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('hotels.index')
+            ->with('success', 'Hotel berhasil dihapus.');
     }
 }

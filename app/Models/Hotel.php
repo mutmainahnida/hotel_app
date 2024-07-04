@@ -2,15 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Hotel extends Model
 {
-    protected $fillable = [
-        'name', 'location', 'rating', 'price_per_night', 'image', 'address', 'room_types'
-    ];
+    use HasFactory;
 
-    protected $casts = [
-        'room_types' => 'array',
+    protected $fillable = [
+        'name', 'location', 'rating', 'image', 'address', 'email'
     ];
 }
