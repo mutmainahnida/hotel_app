@@ -18,7 +18,7 @@ class CreateHotelsTable extends Migration
             $table->string('nama');
             $table->string('lokasi');
             $table->integer('penilaian')->default(0);
-            $table->string('gambar')->nullable();
+            $table->string('image')->nullable();
             $table->string('alamat');
             $table->string('email');
             $table->timestamps();

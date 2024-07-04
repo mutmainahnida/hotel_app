@@ -24,9 +24,9 @@
         </div>
 
         <div class="form-group">
-            <label for="gambar">Gambar</label>
-            @if ($hotel->gambar)
-                <img src="{{ asset('storage/images/' . $hotel->gambar) }}" alt="Hotel Image" style="max-width: 200px; max-height: 200px; margin-bottom: 10px;">
+            <label for="image">Gambar</label>
+            @if ($hotel->image)
+                <img src="{{ asset('storage/images/' . $hotel->image) }}" alt="Hotel Image" style="max-width: 200px; max-height: 200px; margin-bottom: 10px;">
             @endif
             <input type="file" class="form-control-file" id="gambar" name="gambar">
         </div>
