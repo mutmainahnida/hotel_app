@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hotel;
 use App\Models\penilaian;
 use Illuminate\Http\Request;
 
@@ -19,9 +20,10 @@ class PenilaianController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+     public function create()
     {
-        //
+        $hotels = Hotel::all();
+        return view('kamars.create', compact('hotels'));
     }
 
     /**
@@ -29,7 +31,19 @@ class PenilaianController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'hotel_id' => 'required|exists:hotels,id',
+            'penilaian' => 'required|integer|min:1|max:5',
+            'teks_penilaian' => 'nullable|string',
+        ]);
+
+        Penilaian::create([
+            'hotel_id' => $request->hotel_id,
+            'penilaian' => $request->penilaian,
+            'teks_penilaian' => $request->teks_penilaian,
+        ]);
+
+        return redirect()->route('penilaians.index')->with('success', 'Penilaian baru berhasil ditambahkan.');
     }
 
     /**
