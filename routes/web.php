@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HotelController;
+use App\Http\Controllers\KamarController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -15,6 +16,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('user', UserController::class);
 Route::resource('hotel', HotelController::class);
+Route::resource('kamars', KamarController::class);
 
 //edit
 Route::get('/hotels/{hotel}/edit', [HotelController::class, 'edit'])->name('hotels.edit');
@@ -26,3 +28,4 @@ Route::post('hotels', [HotelController::class, 'store'])->name('hotels.store');
 
 //read dan destroy
 Route::resource('hotels', HotelController::class)->only(['index', 'show', 'destroy']);
+
