@@ -1,4 +1,4 @@
-<!-- resources/views/hotels/show.blade.php -->
+<!-- resources/views/hotel/show.blade.php -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,16 +6,16 @@
 </head>
 <body>
     <h1>{{ $hotel->nama }}</h1>
-    <img src="{{ asset('storage/' . $hotels->gambar) }}" alt="{{ $hotels->nama }}" style="width:300px;"><br>
-    <p>Lokasi: {{ $hotels->lokasi }}</p>
-    <p>Penilaian: {{ $hotels->penilaian }}</p>
+    <img src="{{ asset('storage/' . $hotel->gambar) }}" alt="{{ $hotel->nama }}" style="width:300px;"><br>
+    <p>Lokasi: {{ $hotel->lokasi }}</p>
+    <p>Penilaian: {{ $hotel->penilaian }}</p>
     <p>Harga per malam: ${{ $hotel->harga_permalam }}</p>
-    <p>Alamat: {{ $hotels->alamat }}</p>
+    <p>Alamat: {{ $hotel->alamat }}</p>
     <div id="map" style="height: 400px; width: 600px;"></div>
     <script>
         function initMap() {
             var geocoder = new google.maps.Geocoder();
-            geocoder.geocode({'alamat': '{{ $hotels->alamat }}'}, function(results, status) {
+            geocoder.geocode({'alamat': '{{ $hotel->alamat }}'}, function(results, status) {
                 if (status === 'OK') {
                     var map = new google.maps.Map(document.getElementById('map'), {
                         zoom: 15,
@@ -32,11 +32,11 @@
         }
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap"></script>
-    <p>Room Types:</p>
+    {{-- <p>Room Types:</p>
     <ul>
         @foreach(json_decode($hotel->room_types, true) as $roomType)
             <li>{{ $roomType['type'] }} - Available: {{ $roomType['available'] }}</li>
         @endforeach
-    </ul>
+    </ul> --}}
 </body>
 </html>

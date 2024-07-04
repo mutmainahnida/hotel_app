@@ -14,7 +14,6 @@ class HotelController extends Controller
     public function index()
     {
         $hotels = Hotel::all();
-
         return view('hotels.index', compact('hotels'));
     }
 
@@ -65,7 +64,8 @@ class HotelController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $hotel = Hotel::findOrFail($id);
+        return view('hotels.show', compact('hotel'));
     }
 
     /**
@@ -119,6 +119,12 @@ class HotelController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $hotel = Hotel::findOrFail($id);
+        if ($hotel->gambar) {
+            Storage::delete('public/images/' . $hotel->gambar);
+        }
+        $hotel->delete();
+
+        return redirect()->route('hotels.index')->with('success', 'Hotel deleted successfully');
     }
 }

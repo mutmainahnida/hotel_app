@@ -23,3 +23,6 @@ Route::put('/hotels/{hotel}', [HotelController::class, 'update'])->name('hotels.
 //create
 Route::get('hotels/create', [HotelController::class, 'create'])->name('hotels.create');
 Route::post('hotels', [HotelController::class, 'store'])->name('hotels.store');
+
+//read dan destroy
+Route::resource('hotels', HotelController::class)->only(['index', 'show', 'destroy']);
