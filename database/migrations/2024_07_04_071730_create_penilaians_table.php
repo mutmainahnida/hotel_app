@@ -9,7 +9,8 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    
+        });public function up(): void
     {
         Schema::create('penilaians', function (Blueprint $table) {
             $table->id();
@@ -17,7 +18,6 @@ return new class extends Migration
             $table->integer('penilaian');
             $table->string('teks_penilaian');
             $table->timestamps();
-        });
     }
 
     /**
