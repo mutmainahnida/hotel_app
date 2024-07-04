@@ -1,16 +1,14 @@
-
-
-@extends('layouts.app') <!-- Misalkan menggunakan layout Blade yang umum -->
+@extends('layouts.app')
 
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Tambah Penilaian Baru</div>
+                    <div class="card-header">Tambah Kamar Baru</div>
 
                     <div class="card-body">
-                        <form action="{{ route('penilaians.store') }}" method="POST">
+                        <form action="{{ route('kamar.store') }}" method="POST">
                             @csrf
 
                             <div class="form-group">
@@ -23,13 +21,18 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="penilaian">Penilaian</label>
-                                <input type="number" id="penilaian" name="penilaian" class="form-control" min="1" max="5" required>
+                                <label for="jenis_kamar">Jenis Kamar</label>
+                                <input type="text" id="jenis_kamar" name="jenis_kamar" class="form-control" required>
                             </div>
 
                             <div class="form-group">
-                                <label for="teks_penilaian">Teks Penilaian</label>
-                                <textarea id="teks_penilaian" name="teks_penilaian" class="form-control"></textarea>
+                                <label for="deskripsi">Deskripsi</label>
+                                <textarea id="deskripsi" name="deskripsi" class="form-control"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="harga_permalam">Harga per Malam</label>
+                                <input type="number" id="harga_permalam" name="harga_permalam" class="form-control" required>
                             </div>
 
                             <button type="submit" class="btn btn-primary">Simpan</button>
